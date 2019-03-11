@@ -1,0 +1,33 @@
+#!/bin/python
+
+import boto3
+import json
+
+ec2_client = boto3.client('ec2', region_name='us-west-2')
+
+
+def get_ips_by_prefix(name_prefix):
+    try:
+        ec2_ips = []
+        response = ec2_client.describe_instances(
+            Filters = [
+              {
+                 'Name': 'instance-state-name',
+                 'Values': ['running']
+              }
+        ])
+
+        for reservation in response['Reservations']:
+            for instance in reservation['Instances']:
+                for tag in instance['Tags']:
+                    if 'Name' in str(tag['Key']) and name_prefix in str(tag['Value']):
+                        for nic in instance['NetworkInterfaces']:
+                            ec2_ips.append({'Ip':str(nic['PrivateIpAddress']), 'Name':str(tag['Value'])})
+        return ec2_ips
+    except Exception as e:
+        print colored(e, 'red')
+        pass
+
+inventory = json.dumps(get_ips_by_prefix('INTCLOUD-STAGING7'))
+
+print(json.dumps(inventory, indent=4, sort_keys=True))

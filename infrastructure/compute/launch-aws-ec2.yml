@@ -5,31 +5,30 @@
   tasks:
    - name: Provision a set of instances
      ec2:
-         key_name: {{ key-name }}
-         region: {{ aws-region }}
-         instance_type: {{ instance-type }}
-         image: {{ aws-ami }}
-         group_id: {{ security-group-Id }}
+         key_name: "{{ key_name }}"
+         region: "{{ aws_region }}"
+         instance_type: "{{ instance_type }}"
+         image: "{{ aws_ami }}"
+         group_id: "{{ security_group-Id }}"
          wait: true
          instance_tags:
-            Name: {{ instance_name }}
-            APPLICATIONENV: {{ application_environment }}
-            APPLICATIONROLE: {{ application_role }}
-            BUSINESSENTITY: {{ business_entity }}
-            BUSINESSUNIT: {{ business_unit }}
-            DOMAIN: {{ domain }}
-            ENVIRONMENT: {{ environment }}
-            OWNEREMAIL: {{ owner_email }}
-            POD: {{ pod_name}}
-            RUNNINGSCHEDULE: {{ running_schedule }}
-            SERVICEENTITY: {{ service_entity }}
-            SERVICENAME: {{ service_name }}
-            SHORT_HOSTNAME: {{ short_hostname }}
+            Name: "{{ instance_name }}"
+            APPLICATIONENV: "{{ application_environment }}"
+            APPLICATIONROLE: "{{ application_role }}"
+            BUSINESSENTITY: "{{ business_entity }}"
+            BUSINESSUNIT: "{{ business_unit }}"
+            DOMAIN: "{{ domain }}"
+            ENVIRONMENT: "{{ environment }}"
+            OWNEREMAIL: "{{ owner_email }}"
+            POD: "{{ pod_name}}"
+            RUNNINGSCHEDULE: "{{ running_schedule }}"
+            SERVICEENTITY: "{{ service_entity }}"
+            SERVICENAME: "{{ service_name }}"
+            SHORT_HOSTNAME: "{{ short_hostname }}"
      register: ec2
 
    - set_fact:
-         one_fact: something
          cacheable: true
-         add_host: hostname={{ item.private_ip }} groups=ec2hosts
+         host_ip: "{{ item.private_ip }}"
          loop: "{{ ec2.instances }}"
 

@@ -1,0 +1,23 @@
+- hosts: localhost
+  connection: local
+  gather_facts: False
+
+  tasks:
+    - name: Create aws security group
+      ec2_group:
+        name: "{{ security_group_name }}"
+        description: Security group
+        vpc_id: "{{ vpc_id }}"
+        region: "{{ aws_region }}"
+        rules:
+          - proto: tcp
+            from_port: 22
+            to_port: 22
+            cidr_ip: "{{ cidr_access }}"
+      when: security_group_name != ""
+      register: security_group
+
+   - set_fact:
+         cacheable: true
+         security_group_Id = "{{ security_group.group_id }}"
+     when: security_group_name != ""

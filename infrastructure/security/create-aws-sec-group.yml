@@ -17,7 +17,7 @@
       when: security_group_name != ""
       register: security_group
 
-   - set_fact:
-         cacheable: true
-         security_group_Id = "{{ security_group.group_id }}"
-     when: security_group_name != ""
+    - set_fact:
+        cacheable: true
+        security_group_Id = "{{ security_group.group_id }}"
+      when: security_group_name != ""

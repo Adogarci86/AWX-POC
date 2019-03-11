@@ -1,0 +1,35 @@
+- hosts: localhost
+  connection: local
+  gather_facts: False
+
+  tasks:
+   - name: Provision a set of instances
+     ec2:
+         key_name: {{ key-name }}
+         region: {{ aws-region }}
+         instance_type: {{ instance-type }}
+         image: {{ aws-ami }}
+         group_id: {{ security-group-Id }}
+         wait: true
+         instance_tags:
+            Name: {{ instance_name }}
+            APPLICATIONENV: {{ application_environment }}
+            APPLICATIONROLE: {{ application_role }}
+            BUSINESSENTITY: {{ business_entity }}
+            BUSINESSUNIT: {{ business_unit }}
+            DOMAIN: {{ domain }}
+            ENVIRONMENT: {{ environment }}
+            OWNEREMAIL: {{ owner_email }}
+            POD: {{ pod_name}}
+            RUNNINGSCHEDULE: {{ running_schedule }}
+            SERVICEENTITY: {{ service_entity }}
+            SERVICENAME: {{ service_name }}
+            SHORT_HOSTNAME: {{ short_hostname }}
+     register: ec2
+
+   - set_fact:
+         one_fact: something
+         cacheable: true
+         add_host: hostname={{ item.private_ip }} groups=ec2hosts
+         loop: "{{ ec2.instances }}"
+

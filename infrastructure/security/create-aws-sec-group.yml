@@ -19,5 +19,5 @@
 
     - set_fact:
         cacheable: true
-        security_group_Id = "{{ security_group.group_id }}"
+        security_group_Id: "{{ security_group.group_id }}"
       when: security_group_name != ""

@@ -4,8 +4,8 @@
 
   tasks:
    - name: "Output test results"
-    debug:
-      msg: "{{ security_group_id }}"
+     debug:
+       msg: "{{ security_group_id }}"
 
    - name: Provision a set of instances
      ec2:

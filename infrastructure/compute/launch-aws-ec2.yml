@@ -13,8 +13,8 @@
          region: "{{ aws_region }}"
          instance_type: "{{ instance_type }}"
          image: "{{ aws_ami }}"
-         group: "{{ security_group_name }}"
          group_id: "{{ security_group_id }}"
+         vpc_subnet_id: "{{ vpc_subnet_id }}"
          wait: true
          instance_tags:
             Name: "{{ instance_name }}"

@@ -3,7 +3,7 @@
   gather_facts: True
 
   tasks:
-  - name: "Output test results"
+   - name: "Output test results"
     debug:
       msg: "{{ security_group_id }}"
 

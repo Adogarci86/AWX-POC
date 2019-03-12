@@ -13,7 +13,7 @@
          region: "{{ aws_region }}"
          instance_type: "{{ instance_type }}"
          image: "{{ aws_ami }}"
-         group_id: "{{ security_group_id }}"
+         groupId: "{{ security_group_id }}"
          wait: true
          instance_tags:
             Name: "{{ instance_name }}"

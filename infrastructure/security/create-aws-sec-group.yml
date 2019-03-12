@@ -9,6 +9,20 @@
         description: Security group
         vpc_id: "{{ vpc_id }}"
         region: "{{ aws_region }}"
+        tags:
+            Name: "{{ security_group_name }}"
+            APPLICATIONENV: "{{ application_environment }}"
+            APPLICATIONROLE: "{{ application_role }}"
+            BUSINESSENTITY: "{{ business_entity }}"
+            BUSINESSUNIT: "{{ business_unit }}"
+            DOMAIN: "{{ domain }}"
+            ENVIRONMENT: "{{ pod_environment }}"
+            OWNEREMAIL: "{{ owner_email }}"
+            POD: "{{ pod_name}}"
+            RUNNINGSCHEDULE: "{{ running_schedule }}"
+            SERVICEENTITY: "{{ service_entity }}"
+            SERVICENAME: "{{ service_name }}"
+            SHORT_HOSTNAME: "{{ short_hostname }}"
         rules:
           - proto: tcp
             from_port: 22

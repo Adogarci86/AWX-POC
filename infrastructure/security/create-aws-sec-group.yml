@@ -32,5 +32,6 @@
       register: security_group
 
     - set_stats:
-        security_group_id: "{{ security_group.group_id }}"
+        data:
+          security_group_id: "{{ security_group.group_id }}"
       when: security_group_name != ""

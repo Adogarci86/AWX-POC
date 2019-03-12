@@ -28,6 +28,7 @@
      register: ec2
 
    - set_stats:
+       data:  
          host_ip: "{{ item.private_ip }}"
      loop: "{{ ec2.instances }}"
 

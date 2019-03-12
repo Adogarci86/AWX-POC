@@ -9,7 +9,7 @@
          region: "{{ aws_region }}"
          instance_type: "{{ instance_type }}"
          image: "{{ aws_ami }}"
-         group_id: "{{ security_group-Id }}"
+         group_id: "{{ security_group_id }}"
          wait: true
          instance_tags:
             Name: "{{ instance_name }}"
@@ -18,7 +18,7 @@
             BUSINESSENTITY: "{{ business_entity }}"
             BUSINESSUNIT: "{{ business_unit }}"
             DOMAIN: "{{ domain }}"
-            ENVIRONMENT: "{{ environment }}"
+            ENVIRONMENT: "{{ pod_environment }}"
             OWNEREMAIL: "{{ owner_email }}"
             POD: "{{ pod_name}}"
             RUNNINGSCHEDULE: "{{ running_schedule }}"

@@ -1,6 +1,6 @@
 - hosts: localhost
   connection: local
-  gather_facts: False
+  gather_facts: True
 
   tasks:
     - name: Create aws security group

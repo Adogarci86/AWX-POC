@@ -27,8 +27,7 @@
             SHORT_HOSTNAME: "{{ short_hostname }}"
      register: ec2
 
-   - set_fact:
-         cacheable: true
+   - set_stats:
          host_ip: "{{ item.private_ip }}"
-         loop: "{{ ec2.instances }}"
+     loop: "{{ ec2.instances }}"
 

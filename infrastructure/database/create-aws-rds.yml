@@ -1,0 +1,37 @@
+- hosts: localhost
+  connection: local
+  gather_facts: True
+
+  tasks:
+   - name: "Output test results"
+     debug:
+       msg: "{{ rds_instance_name }}"
+
+   - name: Provision a new rds instance
+     rds:
+       command: create
+       instance_name: "{{ rds_instance }}"
+       db_engine: MySQL
+       size: "{{ rds_size }}"
+       instance_type: "{{ rds_instance_type }}"
+       username: "{{ rds_username }}"
+       password: "{{ rds_password }}"
+       tags:
+            Name: "{{ instance_name }}"
+            APPLICATIONENV: "{{ application_environment }}"
+            APPLICATIONROLE: "{{ application_role }}"
+            BUSINESSENTITY: "{{ business_entity }}"
+            BUSINESSUNIT: "{{ business_unit }}"
+            DOMAIN: "{{ domain }}"
+            ENVIRONMENT: "{{ pod_environment }}"
+            OWNEREMAIL: "{{ owner_email }}"
+            POD: "{{ pod_name}}"
+            RUNNINGSCHEDULE: "{{ running_schedule }}"
+            SERVICEENTITY: "{{ service_entity }}"
+            SERVICENAME: "{{ service_name }}"
+            SHORT_HOSTNAME: "{{ short_hostname }}"
+
+   - set_stats:
+       data:
+         host_ip: "{{ item.private_ip }}"
+     loop: "{{ ec2.instances }}"

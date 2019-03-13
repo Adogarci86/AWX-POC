@@ -1,0 +1,16 @@
+- hosts: localhost
+  gather_facts: no
+  tasks:
+ 
+    - name: Pass plain variable to ansible
+      debug:
+        msg: "{{ my_plain_variable }}"
+ 
+ 
+    - name: Pass list to ansible
+      debug:
+        msg: "{{ my_list }}"
+ 
+    - name: Pass dictionary to ansible
+      debug:
+        msg: "{{ my_dictionary }}"

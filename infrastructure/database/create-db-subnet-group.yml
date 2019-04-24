@@ -1,0 +1,26 @@
+- hosts: localhost
+  connection: local
+  gather_facts: True
+
+  vars:
+    db_group_name: "{{business_unit}}-{{application_environment}}-{{pod_name}}-DB-SUBNETGROUP"
+
+  tasks:
+    - name: Create aws db subnet group
+      rds_subnet_group:
+        state: present
+        name: "{{db_group_name}}"
+        description: Infa db subnet group
+        subnets:
+          - "{{subnet_db_za}}"
+          - "{{subnet_db_zb}}"
+        tags:
+            Name: "{{ security_group_name }}"
+            APPLICATIONENV: "{{ application_environment }}"
+            APPLICATIONROLE: "{{ application_role }}"
+            BUSINESSENTITY: "{{ business_entity }}"
+            BUSINESSUNIT: "{{ business_unit }}"
+            DOMAIN: "{{ domain }}"
+            ENVIRONMENT: "{{ pod_environment }}"
+            OWNEREMAIL: "{{ owner_email }}"
+            POD: "{{ pod_name}}"

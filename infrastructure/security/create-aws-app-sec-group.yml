@@ -1,0 +1,90 @@
+- hosts: localhost
+  connection: local
+  gather_facts: True
+
+  vars:
+    security_group_name: "{{business_unit}}-{{application_environment}}-{{pod_name}}-APP-SG"
+
+  tasks:
+    - name: Create aws security group
+      ec2_group:
+        name: "{{ security_group_name }}"
+        description: Security group
+        vpc_id: "{{ vpc_id }}"
+        region: "{{ aws_region }}"
+        tags:
+            Name: "{{ security_group_name }}"
+            APPLICATIONENV: "{{ application_environment }}"
+            APPLICATIONROLE: "{{ application_role }}"
+            BUSINESSENTITY: "{{ business_entity }}"
+            BUSINESSUNIT: "{{ business_unit }}"
+            DOMAIN: "{{ domain }}"
+            ENVIRONMENT: "{{ pod_environment }}"
+            OWNEREMAIL: "{{ owner_email }}"
+            POD: "{{ pod_name }}"
+        rules:
+          - proto: tcp
+            from_port: 2181
+            to_port: 2181
+            cidr_ip: "{{ cidr_blocks_pod }}"
+            description: "Another Kafka Port"
+          - proto: tcp
+            from_port: 2888
+            to_port: 3888
+            cidr_ip: "{{ cidr_blocks_pod }}"
+            description: "Zookeeper Ports"
+          - proto: tcp
+            from_port: 9012
+            to_port: 9012
+            cidr_ip: "{{ cidr_blocks_pod }}"
+            description: "SaaS JSF Port"
+          - proto: tcp
+            from_port: 9089
+            to_port: 9092
+            cidr_ip:
+              - "{{ cidr_blocks_pod }}"
+              - "{{ cidr_blocks_ma }}"
+            description: "Kafka Ports"
+          - proto: tcp
+            from_port: 16000
+            to_port: 16150
+            cidr_ip:
+              - "{{ cidr_blocks_pod }}"
+              - "{{ cidr_blocks_ma }}"
+            description: "Micro Services Ports"
+          - proto: tcp
+            from_port: 16529
+            to_port: 16529
+            cidr_ip: "{{ cidr_blocks_pod }}"
+            description: "Auditlog-service Port"
+          - proto: tcp
+            from_port: 16539
+            to_port: 16539
+            cidr_ip: "{{ cidr_blocks_pod }}"
+            description: "Autoscaler-service Port"
+          - proto: tcp
+            from_port: 18055
+            to_port: 18055
+            cidr_ip:
+              - "{{ cidr_blocks_pod }}"
+              - "{{ cidr_blocks_ma }}"
+            description: "MFTSaaS Port"
+          - proto: tcp
+            from_port: 20023
+            to_port: 20023
+            cidr_ip:
+              - "{{ cidr_blocks_pod }}"
+              - "{{ cidr_blocks_ma }}"
+            description: "CCI Port"
+          - proto: all
+            from_port: 0
+            to_port: 0
+            group_name: "{{ security_group_name }}"
+            description: "Allowing All Traffic from Same Security Group"
+      when: security_group_name != ""
+      register: security_group
+
+    - set_stats:
+        data:
+          security_group_id: "{{ security_group.group_id }}"
+      when: security_group_name != ""

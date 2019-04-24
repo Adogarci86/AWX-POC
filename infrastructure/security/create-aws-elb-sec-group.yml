@@ -1,0 +1,42 @@
+- hosts: localhost
+  connection: local
+  gather_facts: True
+
+  vars:
+    security_group_name: "{{business_unit}}-{{application_environment}}-{{pod_name}}-ELB-SG"
+
+  tasks:
+    - name: Create aws security group
+      ec2_group:
+        name: "{{ security_group_name }}"
+        description: Security group
+        vpc_id: "{{ vpc_id }}"
+        region: "{{ aws_region }}"
+        tags:
+            Name: "{{ security_group_name }}"
+            APPLICATIONENV: "{{ application_environment }}"
+            APPLICATIONROLE: "{{ application_role }}"
+            BUSINESSENTITY: "{{ business_entity }}"
+            BUSINESSUNIT: "{{ business_unit }}"
+            DOMAIN: "{{ domain }}"
+            ENVIRONMENT: "{{ pod_environment }}"
+            OWNEREMAIL: "{{ owner_email }}"
+            POD: "{{ pod_name}}"
+        rules:
+          - proto: tcp
+            from_port: 443
+            to_port: 443
+            cidr_ip: "0.0.0.0/0"
+            description: "HTTPS Port"
+          - proto: tcp
+            from_port: 5003
+            to_port: 5003
+            cidr_ip: "0.0.0.0/0"
+            description: "FileMaker name binding and transport TCP port"
+      when: security_group_name != ""
+      register: security_group
+
+    - set_stats:
+        data:
+          security_group_id: "{{ security_group.group_id }}"
+      when: security_group_name != ""

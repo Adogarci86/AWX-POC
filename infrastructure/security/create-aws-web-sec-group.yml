@@ -2,6 +2,9 @@
   connection: local
   gather_facts: True
 
+  vars:
+    security_group_name: "{{business_unit}}-{{application_environment}}-{{pod_name}}-WEB-SG"
+
   tasks:
     - name: Create aws security group
       ec2_group:
@@ -19,15 +22,19 @@
             ENVIRONMENT: "{{ pod_environment }}"
             OWNEREMAIL: "{{ owner_email }}"
             POD: "{{ pod_name}}"
-            RUNNINGSCHEDULE: "{{ running_schedule }}"
-            SERVICEENTITY: "{{ service_entity }}"
-            SERVICENAME: "{{ service_name }}"
-            SHORT_HOSTNAME: "{{ short_hostname }}"
         rules:
           - proto: tcp
-            from_port: 22
-            to_port: 22
-            cidr_ip: "{{ cidr_access }}"
+            from_port: 443
+            to_port: 443
+            cidr_ip: "{{ cidr_blocks_pod }}"
+          - proto: tcp
+            from_port: 443
+            to_port: 443
+            cidr_ip: "{{ cidr_blocks_ma }}"
+          - proto: tcp
+            from_port: 443
+            to_port: 443
+            group_name: "{{ security_group_name }}"
       when: security_group_name != ""
       register: security_group
 

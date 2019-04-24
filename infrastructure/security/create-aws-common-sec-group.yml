@@ -27,7 +27,7 @@
             from_port: 22
             to_port: 22
             cidr_ip: "{{ cidr_blocks_mgmt }}"
-            description: "SSH Port"
+            rule_desc: "SSH Port"
       when: security_group_name != ""
       register: security_group
 

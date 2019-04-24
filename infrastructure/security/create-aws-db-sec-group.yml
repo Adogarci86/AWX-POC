@@ -27,17 +27,17 @@
             from_port: 3306
             to_port: 3306
             cidr_ip: "{{ cidr_blocks_cr }}"
-            description: "Cross-region CIDR Blocks"
+            rule_desc: "Cross-region CIDR Blocks"
           - proto: tcp
             from_port: 3306
             to_port: 3306
             cidr_ip: "{{ cidr_blocks_ma }}"
-            description: "MA pod CIDR Blocks"
+            rule_desc: "MA pod CIDR Blocks"
           - proto: tcp
             from_port: 3306
             to_port: 3306
             cidr_ip: "{{ cidr_blocks_pod }}"
-            description: "Current POD CIDR Blocks"
+            rule_desc: "Current POD CIDR Blocks"
       when: security_group_name != ""
       register: security_group
 

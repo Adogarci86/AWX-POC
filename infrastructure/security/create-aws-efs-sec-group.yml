@@ -27,6 +27,7 @@
             from_port: 2049
             to_port: 2049
             cidr_ip: "{{ cidr_blocks_pod }}"
+            rule_desc: "Ingress access"
       when: security_group_name != ""
       register: security_group
 

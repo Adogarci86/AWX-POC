@@ -27,60 +27,60 @@
             from_port: 2181
             to_port: 2181
             cidr_ip: "{{ cidr_blocks_pod }}"
-            description: "Another Kafka Port"
+            rule_desc: "Another Kafka Port"
           - proto: tcp
             from_port: 2888
             to_port: 3888
             cidr_ip: "{{ cidr_blocks_pod }}"
-            description: "Zookeeper Ports"
+            rule_desc: "Zookeeper Ports"
           - proto: tcp
             from_port: 9012
             to_port: 9012
             cidr_ip: "{{ cidr_blocks_pod }}"
-            description: "SaaS JSF Port"
+            rule_desc: "SaaS JSF Port"
           - proto: tcp
             from_port: 9089
             to_port: 9092
             cidr_ip:
               - "{{ cidr_blocks_pod }}"
               - "{{ cidr_blocks_ma }}"
-            description: "Kafka Ports"
+            rule_desc: "Kafka Ports"
           - proto: tcp
             from_port: 16000
             to_port: 16150
             cidr_ip:
               - "{{ cidr_blocks_pod }}"
               - "{{ cidr_blocks_ma }}"
-            description: "Micro Services Ports"
+            rule_desc: "Micro Services Ports"
           - proto: tcp
             from_port: 16529
             to_port: 16529
             cidr_ip: "{{ cidr_blocks_pod }}"
-            description: "Auditlog-service Port"
+            rule_desc: "Auditlog-service Port"
           - proto: tcp
             from_port: 16539
             to_port: 16539
             cidr_ip: "{{ cidr_blocks_pod }}"
-            description: "Autoscaler-service Port"
+            rule_desc: "Autoscaler-service Port"
           - proto: tcp
             from_port: 18055
             to_port: 18055
             cidr_ip:
               - "{{ cidr_blocks_pod }}"
               - "{{ cidr_blocks_ma }}"
-            description: "MFTSaaS Port"
+            rule_desc: "MFTSaaS Port"
           - proto: tcp
             from_port: 20023
             to_port: 20023
             cidr_ip:
               - "{{ cidr_blocks_pod }}"
               - "{{ cidr_blocks_ma }}"
-            description: "CCI Port"
+            rule_desc: "CCI Port"
           - proto: all
             from_port: 0
             to_port: 0
             group_name: "{{ security_group_name }}"
-            description: "Allowing All Traffic from Same Security Group"
+            rule_desc: "Allowing All Traffic from Same Security Group"
       when: security_group_name != ""
       register: security_group
 

@@ -27,22 +27,22 @@
             from_port: 3306
             to_port: 3306
             cidr_ip: "{{ cidr_blocks_nagios }}"
-            description: "Nagios MySQL Port"
+            rule_desc: "Nagios MySQL Port"
           - proto: tcp
             from_port: 5666
             to_port: 5666
             cidr_ip: "{{ cidr_blocks_nagios }}"
-            description: "Nagios Server Port"
+            rule_desc: "Nagios Server Port"
           - proto: tcp
             from_port: 8301
             to_port: 8301
             cidr_ip: "{{ cidr_blocks_ma }}"
-            description: "Consul TCP Port"
+            rule_desc: "Consul TCP Port"
           - proto: udp
             from_port: 8301
             to_port: 8301
             cidr_ip: "{{ cidr_blocks_ma }}"
-            description: "Consul UDP Port"
+            rule_desc: "Consul UDP Port"
       when: security_group_name != ""
       register: security_group
 

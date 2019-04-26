@@ -43,5 +43,5 @@
 
     - set_stats:
         data:
-          security_group_id: "{{ security_group.group_id }}"
+          db_security_group_id: "{{ security_group.group_id }}"
       when: security_group_name != ""

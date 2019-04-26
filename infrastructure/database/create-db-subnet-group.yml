@@ -24,3 +24,9 @@
             ENVIRONMENT: "{{ pod_environment }}"
             OWNEREMAIL: "{{ owner_email }}"
             POD: "{{ pod_name}}"
+      register: subnet_group
+
+    - set_stats:
+        data:
+          db_subnet_group: "{{ db_group_name }}"
+      when: db_group_name != ""

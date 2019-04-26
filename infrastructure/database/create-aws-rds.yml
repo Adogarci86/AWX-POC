@@ -3,21 +3,24 @@
   gather_facts: True
 
   tasks:
-   - name: "Output test results"
-     debug:
-       msg: "{{ rds_instance_name }}"
-
    - name: Provision a new rds instance
      rds:
        command: create
-       instance_name: "{{ rds_instance }}"
+       instance_name: "{{ ids_db_name }}"
        db_engine: MySQL
-       size: "{{ rds_size }}"
-       instance_type: "{{ rds_instance_type }}"
-       username: "{{ rds_username }}"
-       password: "{{ rds_password }}"
+       size: "{{ ids_allocated_storage }}"
+       instance_type: "{{ ids_rds_instance_type }}"
+       username: "{{ ids_rds_username }}"
+       password: "{{ ids_rds_password }}"
+       upgrade: no
+       parameter_group: "{{ids_parameter_group_name}}"
+       vpc_security_groups:
+         - "{{db_security_group_id}}"
+         - "{{monitor_security_group_id}}"
+       backup_retention: 7
+       subnet:
        tags:
-            Name: "{{ instance_name }}"
+            Name: "{{ ids_db_name }}"
             APPLICATIONENV: "{{ application_environment }}"
             APPLICATIONROLE: "{{ application_role }}"
             BUSINESSENTITY: "{{ business_entity }}"
@@ -27,9 +30,7 @@
             OWNEREMAIL: "{{ owner_email }}"
             POD: "{{ pod_name}}"
             RUNNINGSCHEDULE: "{{ running_schedule }}"
-            SERVICEENTITY: "{{ service_entity }}"
-            SERVICENAME: "{{ service_name }}"
-            SHORT_HOSTNAME: "{{ short_hostname }}"
+    register: maids_rds
 
    - set_stats:
        data:

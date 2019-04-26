@@ -2,6 +2,9 @@
   connection: local
   gather_facts: True
 
+  vars:
+    ids_db_name: "intcloud-{{ENVIRONMENT}}-ids-rds"
+
   tasks:
    - name: Provision a new rds instance
      rds:
@@ -31,8 +34,3 @@
             POD: "{{ pod_name}}"
             RUNNINGSCHEDULE: "{{ running_schedule }}"
     register: maids_rds
-
-   - set_stats:
-       data:
-         host_ip: "{{ item.private_ip }}"
-     loop: "{{ ec2.instances }}"

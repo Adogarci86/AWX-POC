@@ -1,0 +1,29 @@
+- hosts: localhost
+  connection: local
+  gather_facts: True
+
+  vars:
+    security_group_name: "{{business_unit}}-{{application_environment}}-{{pod_name}}-APP-SG"
+    project_dir: /opt/apps/infa-provisioning/terraform/security_group/sg_app
+
+  tasks:
+    # Define the backend configuration at init
+    - terraform:
+        project_path: "{{project_dir}}"
+        state: "{{state}}"
+        force_init: true
+        backend_config:
+          aws_region: "{{aws_region}}"
+          cidr_blocks_ma: "{{cidr_blocks_ma}}"
+          cidr_blocks_pod: "{{cidr_blocks_pod}}"
+          vpc_id: "{{vpc_id}}"
+          sg_name: "{{security_group_name}}"
+          application_environment: "{{application_environment}}"
+          application_role:  "{{application_role}}"
+          business_entity: "{{business_entity}}"
+          business_unit: "{{business_unit}}"
+          domain: "{{domain}}"
+          pod_environment: "{{pod_environment}}"
+          owner_email: "{{owner_email}}"
+          pod_name: "{{pod_name}}"
+          ami_id: "{{ami_id}}"

@@ -15,7 +15,7 @@
           - "{{subnet_db_za}}"
           - "{{subnet_db_zb}}"
         tags:
-            Name: "{{ security_group_name }}"
+            Name: "{{ db_group_name }}"
             APPLICATIONENV: "{{ application_environment }}"
             APPLICATIONROLE: "{{ application_role }}"
             BUSINESSENTITY: "{{ business_entity }}"

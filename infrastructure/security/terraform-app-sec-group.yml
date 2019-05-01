@@ -10,6 +10,8 @@
     # Define the backend configuration at init
     - terraform:
         project_path: "{{project_dir}}"
+        environment:
+          PATH: /home/centos/terraform/:{{ ansible_facts.env.PATH }}
         state: present
         force_init: true
         backend_config:

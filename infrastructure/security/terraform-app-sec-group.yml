@@ -3,8 +3,14 @@
   gather_facts: True
 
   vars:
-    security_group_name: "{{business_unit}}-{{application_environment}}-{{pod_name}}-APP-SG"
-    project_dir: /opt/apps/infa-provisioning/terraform/security_group/sg_app
+    app_sg_name: "{{business_unit}}-{{application_environment}}-{{pod_name}}-APP-SG"
+    web_sg_name: "{{business_unit}}-{{application_environment}}-{{pod_name}}-WEB-SG"
+    common_sg_name: "{{business_unit}}-{{application_environment}}-{{pod_name}}-COMMON-SG"
+    monitor_sg_name: "{{business_unit}}-{{application_environment}}-{{pod_name}}-MONITOR-SG"
+    db_sg_name: "{{business_unit}}-{{application_environment}}-{{pod_name}}-DB-SG"
+    efs_sg_name: "{{business_unit}}-{{application_environment}}-{{pod_name}}-EFS-SG"
+    elb_sg_name: "{{business_unit}}-{{application_environment}}-{{pod_name}}-ELB-SG"
+    project_dir: /opt/apps/infa-provisioning/terraform/security_group/
 
   tasks:
     # Define the backend configuration at init
@@ -17,7 +23,13 @@
           cidr_blocks_ma: "{{cidr_blocks_ma}}"
           cidr_blocks_pod: "{{cidr_blocks_pod}}"
           vpc_id: "{{vpc_id}}"
-          sg_name: "{{security_group_name}}"
+          app_sg_name: "{{app_sg_name}}"
+          web_sg_name: "{{web_sg_name}}"
+          common_sg_name: "{{common_sg_name}}"
+          monitor_sg_name: "{{monitor_sg_name}}"
+          efs_sg_name: "{{efs_sg_name}}"
+          db_sg_name: "{{db_sg_name}}"
+          elb_sg_name: "{{elb_sg_name}}"
           application_environment: "{{application_environment}}"
           application_role:  "{{application_role}}"
           business_entity: "{{business_entity}}"

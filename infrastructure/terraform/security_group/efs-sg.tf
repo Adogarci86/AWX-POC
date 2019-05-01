@@ -30,14 +30,13 @@ resource "aws_security_group" "sg_efs" {
 
   tags {
     Name = "${efs_sg_name}"
-    APPLICATION_ENVIRONMENT: "${application_environment}"
-    APPLICATION_ROLE:  "${application_role}"
-    BUSINESS_ENTITY: "${business_entity}"
-    BUSINESS_UNIT: "${business_unit}"
-    DOMAIN: "${domain}"
-    POD_ENVIRONMENT: "${pod_environment}"
-    OWNER_EMAIL: "${owner_email}"
-    POD_NAME: "${pod_name}"
-    AMI_ID: "${ami_id}"
+    APPLICATION_ENVIRONMENT = "${application_environment}"
+    APPLICATION_ROLE = "${application_role}"
+    BUSINESS_ENTITY = "${business_entity}"
+    BUSINESS_UNIT = "${business_unit}"
+    DOMAIN = "${domain}"
+    POD_ENVIRONMENT = "${pod_environment}"
+    OWNER_EMAIL = "${owner_email}"
+    POD_NAME = "${pod_name}"
   }
 }

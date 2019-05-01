@@ -10,7 +10,7 @@
     db_sg_name: "{{business_unit}}-{{application_environment}}-{{pod_name}}-DB-SG"
     efs_sg_name: "{{business_unit}}-{{application_environment}}-{{pod_name}}-EFS-SG"
     elb_sg_name: "{{business_unit}}-{{application_environment}}-{{pod_name}}-ELB-SG"
-    project_dir: /opt/apps/infa-provisioning/terraform/security_group/
+    project_dir: infrastructure/terraform/security_group/
 
   tasks:
     # Define the backend configuration at init

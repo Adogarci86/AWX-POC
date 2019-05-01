@@ -10,7 +10,7 @@
     # Define the backend configuration at init
     - terraform:
         project_path: "{{project_dir}}"
-        state: "{{state}}"
+        state: present
         force_init: true
         backend_config:
           aws_region: "{{aws_region}}"

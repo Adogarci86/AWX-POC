@@ -15,7 +15,7 @@
   tasks:
     # Define the backend configuration at init
     - terraform:
-        project_path: "{{project_dir}}/common/"
+        project_path: "{{project_dir}}/{{item}}/"
         state: present
         force_init: true
         variables:

@@ -7,7 +7,7 @@ variable "cidr_blocks_mgmt" {
   description = "CIDR block used by ma-pod"
 }
 
-variable "sg_name" {
+variable "common_sg_name" {
   description = "Security Group Name"
   type        = "string"
 }

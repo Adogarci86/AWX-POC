@@ -3,7 +3,7 @@ variable "aws_region" {
   default     = "us-west-2"
 }
 
-variable "sg_name" {
+variable "elb_sg_name" {
   description = "Security Group Name"
   type        = "string"
 }

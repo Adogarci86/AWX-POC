@@ -13,7 +13,7 @@ variable "cidr_blocks_ma" {
   type        = "string"
 }
 
-variable "sg_name" {
+variable "efs_sg_name" {
   description = "Security Group Name"
   type        = "string"
 }

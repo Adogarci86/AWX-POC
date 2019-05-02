@@ -15,7 +15,7 @@ variable "cidr_blocks_pod" {
   description = "CIDR block used by current pod"
 }
 
-variable "sg_name" {
+variable "monitor_sg_name" {
   description = "Security Group Name"
   type        = "string"
 }

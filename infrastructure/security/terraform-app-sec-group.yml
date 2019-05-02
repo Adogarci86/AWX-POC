@@ -39,12 +39,11 @@
           pod_environment: "{{pod_environment}}"
           owner_email: "{{owner_email}}"
           pod_name: "{{pod_name}}"
-          ami_id: "{{ami_id}}"
-       loop:
-         - app
-         - common
-         - web
-         - monitor
-         - efs
-         - elb
-         - db
+      loop:
+          - app
+          - common
+          - web
+          - monitor
+          - efs
+          - elb
+          - db

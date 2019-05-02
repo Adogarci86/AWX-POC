@@ -15,7 +15,7 @@
   tasks:
     # Define the backend configuration at init
     - terraform:
-        project_path: "{{project_dir}}/{{item}}/"
+        project_path: "{{project_dir}}/app/"
         state: present
         force_init: true
         variables:
@@ -39,11 +39,3 @@
           owner_email: "{{owner_email}}"
           pod_name: "{{pod_name}}"
           ami_id: "{{ami_id}}"
-      loop:
-        - app
-        - web
-        - common
-        - efs
-        - elb
-        - monitor
-        - db

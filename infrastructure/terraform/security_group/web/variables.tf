@@ -12,7 +12,7 @@ variable "cidr_blocks_pod" {
   type        = "string"
 }
 
-variable "sg_name" {
+variable "web_sg_name" {
   description = "Security Group Name"
   type        = "string"
 }

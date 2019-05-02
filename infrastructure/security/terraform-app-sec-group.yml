@@ -23,6 +23,8 @@
           cidr_blocks_ma: "{{cidr_blocks_ma}}"
           cidr_blocks_pod: "{{cidr_blocks_pod}}"
           cidr_blocks_mgmt: "{{cidr_blocks_mgmt}}"
+          cidr_blocks_cr: "{{cidr_blocks_cr}}"
+          cidr_blocks_nagios: "{{cidr_blocks_nagios}}"
           vpc_id: "{{vpc_id}}"
           app_sg_name: "{{app_sg_name}}"
           web_sg_name: "{{web_sg_name}}"

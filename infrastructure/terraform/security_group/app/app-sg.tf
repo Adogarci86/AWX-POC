@@ -1,17 +1,17 @@
 provider "aws" {
-  region = "$${aws_region}"
+  region = "${aws_region}"
 }
 
 resource "aws_security_group" "sg_app" {
-  name        = "$${app_sg_name}"
+  name        = "${app_sg_name}"
   description = "Allow all inbound traffic"
-  vpc_id      = "$${vpc_id}"
+  vpc_id      = "${vpc_id}"
 
   ingress {
     from_port   = 2181
     to_port     = 2181
     protocol    = "TCP"
-    cidr_blocks = ["$${cidr_blocks_pod}"]
+    cidr_blocks = ["${cidr_blocks_pod}"]
     description = "Another Kafka Port"
   }
 
@@ -19,7 +19,7 @@ resource "aws_security_group" "sg_app" {
     from_port   = 2888
     to_port     = 3888
     protocol    = "TCP"
-    cidr_blocks = ["$${cidr_blocks_pod}"]
+    cidr_blocks = ["${cidr_blocks_pod}"]
     description = "Zookeeper Ports"
   }
 
@@ -27,7 +27,7 @@ resource "aws_security_group" "sg_app" {
     from_port   = 9012
     to_port     = 9012
     protocol    = "TCP"
-    cidr_blocks = ["$${cidr_blocks_pod}"]
+    cidr_blocks = ["${cidr_blocks_pod}"]
     description = "SaaS JSF Port"
   }
 
@@ -35,7 +35,7 @@ resource "aws_security_group" "sg_app" {
     from_port   = 9089
     to_port     = 9092
     protocol    = "TCP"
-    cidr_blocks = ["$${cidr_blocks_pod}", "$${cidr_blocks_ma}"]
+    cidr_blocks = ["${cidr_blocks_pod}", "${cidr_blocks_ma}"]
     description = "Kafka Ports"
   }
 
@@ -43,7 +43,7 @@ resource "aws_security_group" "sg_app" {
     from_port   = 16000
     to_port     = 16150
     protocol    = "TCP"
-    cidr_blocks = ["$${cidr_blocks_pod}", "$${cidr_blocks_ma}"]
+    cidr_blocks = ["${cidr_blocks_pod}", "${cidr_blocks_ma}"]
     description = "Micro Services Ports"
   }
 
@@ -51,7 +51,7 @@ resource "aws_security_group" "sg_app" {
     from_port   = 16529
     to_port     = 16529
     protocol    = "TCP"
-    cidr_blocks = ["$${cidr_blocks_pod}"]
+    cidr_blocks = ["${cidr_blocks_pod}"]
     description = "Auditlog-service Port"
   }
 
@@ -59,7 +59,7 @@ resource "aws_security_group" "sg_app" {
     from_port   = 16539
     to_port     = 16539
     protocol    = "TCP"
-    cidr_blocks = ["$${cidr_blocks_pod}"]
+    cidr_blocks = ["${cidr_blocks_pod}"]
     description = "Autoscaler-service Port"
   }
 
@@ -67,7 +67,7 @@ resource "aws_security_group" "sg_app" {
     from_port   = 18055
     to_port     = 18055
     protocol    = "TCP"
-    cidr_blocks = ["$${cidr_blocks_pod}", "$${cidr_blocks_ma}"]
+    cidr_blocks = ["${cidr_blocks_pod}", "${cidr_blocks_ma}"]
     description = "MFTSaaS Port"
   }
 
@@ -75,7 +75,7 @@ resource "aws_security_group" "sg_app" {
     from_port   = 20023
     to_port     = 20023
     protocol    = "TCP"
-    cidr_blocks = ["$${cidr_blocks_pod}", "$${cidr_blocks_ma}"]
+    cidr_blocks = ["${cidr_blocks_pod}", "${cidr_blocks_ma}"]
     description = "CCI Port"
   }
 
@@ -91,7 +91,7 @@ resource "aws_security_group" "sg_app" {
     from_port   = 21000
     to_port     = 21100
     protocol    = "TCP"
-    cidr_blocks = ["$${cidr_blocks_pod}", "$${cidr_blocks_ma}"]
+    cidr_blocks = ["${cidr_blocks_pod}", "${cidr_blocks_ma}"]
     description = "HTTP check for HAproxy"
   }
 
@@ -99,7 +99,7 @@ resource "aws_security_group" "sg_app" {
     from_port   = 19066
     to_port     = 19066
     protocol    = "TCP"
-    cidr_blocks = ["$${cidr_blocks_pod}", "$${cidr_blocks_ma}"]
+    cidr_blocks = ["${cidr_blocks_pod}", "${cidr_blocks_ma}"]
     description = "HTTP check for HAproxy"
   }
 
@@ -107,7 +107,7 @@ resource "aws_security_group" "sg_app" {
     from_port   = 21443
     to_port     = 21443
     protocol    = "TCP"
-    cidr_blocks = ["$${cidr_blocks_pod}", "$${cidr_blocks_ma}"]
+    cidr_blocks = ["${cidr_blocks_pod}", "${cidr_blocks_ma}"]
     description = "HTTP check for HAproxy"
   }
 
@@ -115,7 +115,7 @@ resource "aws_security_group" "sg_app" {
     from_port   = 21529
     to_port     = 21529
     protocol    = "TCP"
-    cidr_blocks = ["$${cidr_blocks_pod}", "$${cidr_blocks_ma}"]
+    cidr_blocks = ["${cidr_blocks_pod}", "${cidr_blocks_ma}"]
     description = "HTTP check for HAproxy"
   }
 
@@ -123,7 +123,7 @@ resource "aws_security_group" "sg_app" {
     from_port   = 21539
     to_port     = 21539
     protocol    = "TCP"
-    cidr_blocks = ["$${cidr_blocks_pod}", "$${cidr_blocks_ma}"]
+    cidr_blocks = ["${cidr_blocks_pod}", "${cidr_blocks_ma}"]
     description = "Auditlog-service Port"
   }
 
@@ -135,14 +135,14 @@ resource "aws_security_group" "sg_app" {
   }
 
   tags {
-    Name = "$${app_sg_name}"
-    APPLICATION_ENVIRONMENT = "$${application_environment}"
-    APPLICATION_ROLE = "$${application_role}"
-    BUSINESS_ENTITY = "$${business_entity}"
-    BUSINESS_UNIT = "$${business_unit}"
-    DOMAIN = "$${domain}"
-    POD_ENVIRONMENT = "$${pod_environment}"
-    OWNER_EMAIL = "$${owner_email}"
-    POD_NAME = "$${pod_name}"
+    Name = "${app_sg_name}"
+    APPLICATION_ENVIRONMENT = "${application_environment}"
+    APPLICATION_ROLE = "${application_role}"
+    BUSINESS_ENTITY = "${business_entity}"
+    BUSINESS_UNIT = "${business_unit}"
+    DOMAIN = "${domain}"
+    POD_ENVIRONMENT = "${pod_environment}"
+    OWNER_EMAIL = "${owner_email}"
+    POD_NAME = "${pod_name}"
   }
 }

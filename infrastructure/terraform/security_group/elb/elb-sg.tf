@@ -1,11 +1,11 @@
 provider "aws" {
-  region = "${aws_region}"
+  region = "${var.aws_region}"
 }
 
 resource "aws_security_group" "sg_elb" {
-  name        = "${elb_sg_name}"
+  name        = "${var.elb_sg_name}"
   description = "Allow all inbound traffic"
-  vpc_id      = "${vpc_id}"
+  vpc_id      = "${var.vpc_id}"
 
   ingress {
     from_port   = 443
@@ -31,14 +31,14 @@ resource "aws_security_group" "sg_elb" {
   }
 
   tags {
-    Name = "${elb_sg_name}"
-    APPLICATION_ENVIRONMENT = "${application_environment}"
-    APPLICATION_ROLE = "${application_role}"
-    BUSINESS_ENTITY = "${business_entity}"
-    BUSINESS_UNIT = "${business_unit}"
-    DOMAIN = "${domain}"
-    POD_ENVIRONMENT = "${pod_environment}"
-    OWNER_EMAIL = "${owner_email}"
-    POD_NAME = "${pod_name}"
+    Name = "${var.elb_sg_name}"
+    APPLICATION_ENVIRONMENT = "${var.application_environment}"
+    APPLICATION_ROLE = "${var.application_role}"
+    BUSINESS_ENTITY = "${var.business_entity}"
+    BUSINESS_UNIT = "${var.business_unit}"
+    DOMAIN = "${var.domain}"
+    POD_ENVIRONMENT = "${var.pod_environment}"
+    OWNER_EMAIL = "${var.owner_email}"
+    POD_NAME = "${var.pod_name}"
   }
 }

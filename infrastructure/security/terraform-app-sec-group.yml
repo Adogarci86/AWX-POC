@@ -22,6 +22,7 @@
           aws_region: "{{aws_region}}"
           cidr_blocks_ma: "{{cidr_blocks_ma}}"
           cidr_blocks_pod: "{{cidr_blocks_pod}}"
+          cidr_blocks_mgmt: "{{cidr_blocks_mgmt}}"
           vpc_id: "{{vpc_id}}"
           app_sg_name: "{{app_sg_name}}"
           web_sg_name: "{{web_sg_name}}"

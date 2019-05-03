@@ -1,0 +1,51 @@
+- hosts: localhost
+  connection: local
+  gather_facts: True
+
+  vars:
+    app_sg_name: "{{business_unit}}-{{application_environment}}-{{pod_name}}-APP-SG"
+    web_sg_name: "{{business_unit}}-{{application_environment}}-{{pod_name}}-WEB-SG"
+    common_sg_name: "{{business_unit}}-{{application_environment}}-{{pod_name}}-COMMON-SG"
+    monitor_sg_name: "{{business_unit}}-{{application_environment}}-{{pod_name}}-MONITOR-SG"
+    db_sg_name: "{{business_unit}}-{{application_environment}}-{{pod_name}}-DB-SG"
+    efs_sg_name: "{{business_unit}}-{{application_environment}}-{{pod_name}}-EFS-SG"
+    elb_sg_name: "{{business_unit}}-{{application_environment}}-{{pod_name}}-ELB-SG"
+    project_dir: "{{playbook_dir}}/../terraform/security_group/"
+
+  tasks:
+    # Define the backend configuration at init
+    - terraform:
+        project_path: "{{project_dir}}/{{item}}/"
+        state: present
+        force_init: true
+        variables:
+          aws_region: "{{aws_region}}"
+          cidr_blocks_ma: "{{cidr_blocks_ma}}"
+          cidr_blocks_pod: "{{cidr_blocks_pod}}"
+          cidr_blocks_mgmt: "{{cidr_blocks_mgmt}}"
+          cidr_blocks_cr: "{{cidr_blocks_cr}}"
+          cidr_blocks_nagios: "{{cidr_blocks_nagios}}"
+          vpc_id: "{{vpc_id}}"
+          app_sg_name: "{{app_sg_name}}"
+          web_sg_name: "{{web_sg_name}}"
+          common_sg_name: "{{common_sg_name}}"
+          monitor_sg_name: "{{monitor_sg_name}}"
+          efs_sg_name: "{{efs_sg_name}}"
+          db_sg_name: "{{db_sg_name}}"
+          elb_sg_name: "{{elb_sg_name}}"
+          application_environment: "{{application_environment}}"
+          application_role:  "{{application_role}}"
+          business_entity: "{{business_entity}}"
+          business_unit: "{{business_unit}}"
+          domain: "{{domain}}"
+          pod_environment: "{{pod_environment}}"
+          owner_email: "{{owner_email}}"
+          pod_name: "{{pod_name}}"
+      loop:
+          - app
+          - common
+          - web
+          - monitor
+          - efs
+          - elb
+          - db

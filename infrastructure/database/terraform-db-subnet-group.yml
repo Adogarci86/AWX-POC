@@ -1,0 +1,26 @@
+- hosts: localhost
+  connection: local
+  gather_facts: True
+
+  vars:
+    db_subnet_group_name: "{{business_unit}}-{{application_environment}}-{{pod_name}}-DB-SUBNETGROUP"
+    project_dir: "{{playbook_dir}}/../terraform/security_group/"
+    subnet_ids:
+
+  tasks:
+    # Define the backend configuration at init
+    - terraform:
+        project_path: "{{project_dir}}"
+        state: present
+        force_init: true
+        variables:
+          subnet_ids: db_subnet_ids
+          db_subnet_group_name: "{{db_subnet_group_name}}"
+          application_environment: "{{application_environment}}"
+          application_role:  "{{application_role}}"
+          business_entity: "{{business_entity}}"
+          business_unit: "{{business_unit}}"
+          domain: "{{domain}}"
+          pod_environment: "{{pod_environment}}"
+          owner_email: "{{owner_email}}"
+          pod_name: "{{pod_name}}"

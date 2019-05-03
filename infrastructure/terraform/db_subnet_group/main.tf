@@ -1,9 +1,9 @@
 provider "aws" {
-  region     = "${var.aws_region}"
+  region = "${var.aws_region}"
 }
 
 resource "aws_db_subnet_group" "default" {
-  db_subnet_group_name       = "${var.db_subnet_group_name}"
+  db_subnet_group_name = "${var.db_subnet_group_name}"
   subnet_ids = "${var.db_subnet_ids}"
 
   tags {

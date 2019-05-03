@@ -1,4 +1,6 @@
-variable "aws_region" {}
+variable "aws_region" {
+  type = "string"
+}
 
 variable "db_subnet_group_name" {
   type = "string"

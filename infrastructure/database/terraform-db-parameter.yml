@@ -4,8 +4,8 @@
 
   vars:
     db_subnet_group_name: "{{business_unit}}-{{application_environment}}-{{pod_name}}-DB-SUBNETGROUP"
-    project_dir: "{{playbook_dir}}/../terraform/db_subnet_group/"
-    subnet_ids: "{{db_subnet_ids}}"
+    project_dir: "{{playbook_dir}}/../terraform/db_parameter_group/"
+    subnet_ids:
 
   tasks:
     # Define the backend configuration at init

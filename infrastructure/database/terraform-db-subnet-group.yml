@@ -14,7 +14,8 @@
         state: present
         force_init: true
         variables:
-          subnet_ids: db_subnet_ids
+          aws_region: "{{aws_region}}"
+          db_subnet_ids: "{{db_subnet_ids}}"
           db_subnet_group_name: "{{db_subnet_group_name}}"
           application_environment: "{{application_environment}}"
           application_role:  "{{application_role}}"

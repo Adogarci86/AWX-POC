@@ -1,5 +1,0 @@
-[DEFAULT]
-databases=appprod
-password=readonly
-hostname=secondary-iics-use4-ics-app.cg301rwy9j7l.us-east-1.rds.amazonaws.com
-user=readonly
